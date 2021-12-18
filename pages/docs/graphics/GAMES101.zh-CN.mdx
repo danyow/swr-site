@@ -1,0 +1,425 @@
+---
+layout: post
+title: "GAMES101"
+categories: Unity 图形学 笔记
+comments: true
+date: 2021-09-14 09:42:42 +0800
+published: true
+math: true
+---
+
+## 矩阵
+
+矩阵的计算没有交换律 也就是
+
+$AB \neq BA$
+
+## 向量
+
+> 其中 `A` 是向量, `x, y` 是在二维坐标的点, 表示由原点到该点的方向.
+
+默认向量的形式是列向量
+
+$\mathbf{A} = \underset{列向量}{\binom{x}{y}}$
+
+$\mathbf{A}^{\underset{转置}{T}}= \underset{行向量}{\left ( x, y \right )}$
+
+$\left \| \boldsymbol{\mathbf{A}} \right \| = \sqrt{x^{2}+y^{2}}$
+
+1. 如果把向量看成列向量, 那么矩阵可以和向量相乘
+
+## 转置
+
+1. 列子
+
+   $\begin{pmatrix} 1&2 \\\\ 3&4 \\\\ 5&6 \end{pmatrix}^{T}=\begin{pmatrix} 1&3&5 \\\\ 2&4&6 \end{pmatrix}$
+
+2. 并不完全满足交换律.
+
+   $\left(AB \right ) ^{T} = B^{T}A^{T}$
+
+## 点乘(点积)
+
+> 点乘 = 长度 x 长度 x 夹角的余弦
+
+点乘也可以理解为第一个向量的转置乘以第一个向量
+
+$\vec{a}\cdot \vec{b} = \vec{a}^{T} \vec{b} = \begin{pmatrix} x_{a} & y_{a} & z_{a} \end{pmatrix}\begin{pmatrix} x_{b}
+\\\\ y_{b} \\\\ z_{b} \end{pmatrix} = \left( x_{a}x_{b} + y_{a}y_{b} + z_{a}z_{b} \right)$
+
+1. 知道点乘的情况下可以快速得到夹角.
+2. 如果是单位向量的话, 点乘就直接是夹角的余弦值.
+3. 点乘满足: 交换律 x 结合律 x 分配律.
+
+   $\underset{交换律}{\vec{a}\cdot \vec{b}= \vec{b}\cdot \vec{a}}$
+
+   $\underset{结合律}{\vec{a}\cdot \left ( \vec{b}+ \vec{c}\right )= \vec{a}\cdot \vec{b}+\vec{a}\cdot \vec{c}}$
+
+   $\underset{分配律}{\left( k\vec{a} \right )\cdot \vec{b}=\vec{a}\cdot\left( k\vec{b} \right )  = k\left(
+   \vec{a}\cdot\vec{b} \right )}$
+
+4. 点乘也可以用来计算一个向量到另外一个向量的投影.
+  
+  - 找到投影后, 可以快速找到垂直的向量.
+
+5. 点乘用来判断两个向量是否接近
+
+6. 点乘 为 0 即两个向量垂直
+
+7. 矩阵中每个行列元素的值的求法等于他输入矩阵对应向量的点积
+
+8. 当用来判断两个向量是否接近的时候需要同时又有一个多少度才算接近的时候可以对角度进行n次方
+
+## 叉乘
+
+$x \times b = \mathit{A}^{*}b = \underset{Dual Matrix}{\begin{pmatrix} 0 & -z_{a} & y_{a} \\\\ z_{a} & 0 & -x_{a} \\\\
+-y_{a} & x_{a} & 0 \end{pmatrix}}\begin{pmatrix} x_{b} \\\\ y_{b} \\\\ z_{b} \end{pmatrix}$
+
+1. 右手螺旋定则:
+   "点赞" 四个手指方向等于 谁叉乘谁的一个旋转方向 拇指为叉乘结果方向
+
+2. 建立三维空间的直角坐标系
+
+3. x 叉乘 y = z 右手坐标系 x 叉乘 y = -z 左手坐标系
+
+4. 叉乘结果的就是 向量
+
+5. 可以得到 向量 的左右关系
+
+6. 判断点是否在三角形的内部 两两叉乘即可 都在同一边
+
+7. 光栅化 处理的时候 三角形的处理
+
+   如果出现某个情况就是光线沿着三角形的某个边插过 那么这种情况自己处理 可在内可在外
+
+## 变换
+
+线性变换并不包括`平移变换` 只有 `缩放` `切变` `旋转` `反射（翻转）`, 直到引入齐次坐标才算做是, 引入 w 后 1 为点 0 为向量
+
+先旋转记作 A 之后平移记作 B 得到 AB 两个矩阵 他们的乘法是 BxAxXY 谁先就先放到 XY 的左边 从右到左开始阅读
+
+四元数主要用作旋转的插值
+
+莫尔纹的出现 基于行列去掉奇数
+
+先模糊之后再采样可以抗锯齿
+
+傅立叶级数展开
+
+采样后无法确定函数称为走样
+
+对图像进行傅立叶变换得到频谱 这时候可以进行相应的滤波
+
+时域的乘积等于频域的卷积
+
+## 漫反射
+
+光照不变的情况下某个点在不同角度观测得到的观测亮度应一致
+
+## 着色
+
+着色频率：
+
+- Flat Shading 面着色
+- Gouraud Shading 顶点着色
+- Phong Shading 冯着色
+
+## 插入
+
+- opengl 对点在边上的判断有不同 上左算在 下右不算
+
+- 四元数主要用作旋转的插值
+
+- 莫尔纹的出现 基于行列去掉奇数
+
+- unity 跟渲染打交道的有两个线程，主线程和渲染线程，当我们在场景中创建一个cube是，首先io线程会将mesh数据读进来并往主线程提交，这一部属于装配数据，反应到unity就是在场景中创建了一个cube(GameObject)
+  ，此时的数据是position,rotation等，然后经过裁剪之后，这些数据按要求加入到渲染线程的各种队列，例如画阴影的，画半透明的，画不透明的等。(DrawObject)
+  ，因为两个线程之间的数据结构不一样，所以涉及到一次内存拷贝，然后pass就会执行刚才说的队列，最后渲染线程会调用opengl的api 这个地方才会涉及到常说的渲染管线，比如裁剪，坐标转换什么的，这个地方也会涉及一次内存拷贝。
+  其实unity为啥勾上srp性能上会好很多，一部分原因就是优化了拷贝次数，所以unity自己的几何实例化不好用的原因也是涉及多次冗余的拷贝。整个流程：场景层（gameObject）->渲染层(urp)->
+  renderCore（commander buffer）->操作系统（opengl）->显卡。最后一步才到大家都知道的渲染管线
+
+- 任意一个点发出射线到任意一个多边形 如果相交的点是奇数就是在图形内  偶数就是在图形外
+
+`acos(-1) = PI` 
+
+## 重心坐标
+
+任意一个在三角形内的点把三角形分割成三份, 面积相同.
+
+1. 空间投影下, 重心坐标并不会不变.
+
+## 双线性插值 (Bilinear)
+
+![双线性插值](Bilinear.jpg "双线性插值")
+
+## Mipmap
+
+Allowing(fast, approx, square) range queries
+
+从一张图生成一系列图, 图像金字塔。
+
+## 法线贴图 = 凹凸贴图 != 位移贴图
+
+如果求得新的法线, 做切线(前后两个点相减, 求倒数)
+
+## 三维纹理
+
+![Mipmap](Mipmap.jpg "Mipmap")
+
+
+## 贝塞尔曲线
+
+1. 一定要经过一组起止点（两个点）
+
+2. 对一个贝塞尔的仿射变换后对称不变
+
+3. 凸包性质
+
+连续性：
+
+1. C0连续 C1连续 C2(二阶导数连续)
+
+B 样条
+
+## MeshSubdivision
+
+1. `Loop Subdivision` 并不是循环细分, 而是那个人叫 `Loop` ->  存在新老顶点
+
+2. `Catmull-Clark Subdivision` 
+
+## MeshSimplification
+
+1. `Collapsing An Edges` 折叠边缘
+
+## Monte Carlo 路径追踪
+
+`Monte Carlo Integration` 积分 
+
+## Path Tracing (N = 1)
+
+`The Utah Teapot` 犹他茶壶
+
+`The Cornell Box` 
+
+
+## Russian Roulette (RR)
+
+俄罗斯轮盘赌 
+
+## Animation
+
+`Keyframe Animation` =  
+
+`Physical Simulation`
+
+`Mass Spring Rope` = 质点弹簧系统
+
+`Particle Systems` = 粒子系统
+
+`Forward Kinematics` 
+
+`Inverse Kinmatics` = 逆运动学
+
+`Rigging` = 操纵(类似贝塞尔)
+
+`Blend Shapes`
+
+`Motion Capture` = 动作捕捉
+
+`Uncanny valley` = 恐怖谷效应
+
+`VFX` = ?
+
+### 名词解释
+
+- `GUI` = _Graphical User Interfaces_ = 图形用户界面
+
+- `Typography` = 字体图形学
+
+- `IDE` = _Integrated Development Environment_ = 集成开发环境
+
+- `Geek` = _Genius_ + _Freak_ = 天才 + 怪胎
+
+- `Perpendicular` = 垂直
+
+- `Matrices` = 矩阵
+
+- `Transpose` = 转置
+
+- `Homogeneous Coordinate` = 齐次坐标
+
+- `Shear` = 切变
+
+- `Affine` = 仿射变换
+
+- `MVP 变换` = _Model View Projection_ = 模型视图投影变换
+
+- `Gaze` = _Look At_ = 看向某个方向
+
+- `Pixel` = _Picture Element_ = 像素
+
+- `FYI` = _For Your Information_ = 供参考
+
+- `AABB` = _Axis Aligned Bounding Box_ = 轴对齐边的框界
+
+- `Rasterization` = 光栅化
+
+- `Jaggies` = 锯齿
+
+- `Raster` = _Screen_ (在德语里)
+
+- `Aliasing` = 走样
+
+- `Antialiasing` = 反走样
+
+- `Artifacts` = 伪迹; 瑕疵
+
+- `Gimbal` = 万向节
+
+- `Pitch` = 飞机抬头; 理解为绕 `X` 轴旋转
+
+- `Yaw` = 飞机地面左右移动; 理解为绕 `Y` 轴旋转
+
+- `Roll` = 飞机空中翻转; 理解为绕 `Z` 轴旋转
+
+- `Z Buffer` = _Deep Buffer_ = 深度缓存
+
+- `MSAA` = _MultiSampling Anti-Aliasing_ = 多重采样抗锯齿
+
+- `Texel` = _A pixel on a texture_ = 纹理元素, 纹素
+
+- `Lerp` = _Linear interpolation_ = 线性插值
+
+- `Bilinear` = 双线性(插值) : 取临近四个每一个做一次线性插值
+
+- `Bicubic` = 双三次(插值) : 取临近十六个每四个做一次线性插值
+
+- `Trilinear` = 三线性(插值) : 做两次查询，在做一次插值
+
+- `Nearest` = 最近处理 不插值
+
+- `Point Query` = 点查询
+
+- `Range Query` = 范围查询
+
+- `Ripmaps` = `Anisotropic Filtering` = 各向异性滤波（对显存开销影响不大，一开就几乎三倍了。）
+
+- `EWA Filtering` = ? 
+
+- `Geometry` = 几何学
+
+- `Implicit` = 隐式
+
+- `Explicit` = 显式
+
+- `Wavefront` = 波前
+
+- `Curves` = 曲线 
+
+- `Bezier` = 贝塞尔
+
+- `Quadratic` = 二次的
+
+- `Bernstein polynomial` = 伯恩斯坦多项式
+
+- `Convex hull` = 凸包
+
+- `Piecewise` = 分段 
+
+- `MeshSubdivision` = 网格细分
+
+- `MeshSimplification` = 网格简化
+
+- `MeshRegularization` = 网格正则化
+
+- `Oct-Tree` = 八叉树
+
+- `KD-Tree` = 
+
+- `BSP-Tree` = 
+
+- `BVH` = _Bounding Volume Hierarchy_ = 
+
+- `Radiant flux` = 辐射通量
+
+- `Intensity` = 强烈(发射到四周)
+
+- `Irradiance` = 辐照度(接收)
+
+- `Radiance` = 光辉
+
+- `Candela` = 坎德拉 (单位?)
+
+- `Radiant Intensity` = 单位立体角的能量(发射到四周)
+
+- `Irradiance` = 辐照度(接收)
+
+- `Solid Angles` = 立体角
+
+- `BRDF` = _Bidirectional Reflectance Distribution Function_ = 双向视图分布函数
+
+- `PDF` = _Probability Distribution Function_ = 概率密度函数
+
+- `Diffuse` = 漫射
+
+- `Glossy` = 有光泽的
+
+- `Fresnel Reflection / Term` = 菲涅尔项
+
+- `Microfacet Theory` = 微表面
+
+- `Isotropic Materials`
+
+- `Anisotropic Materials`
+
+- `Gonioreflectometer` = 角度反射计
+
+- `BDPT` = _Bidirectional Path Tracing_ = 双向路径追踪
+
+- `MLT` = _Metropolis Light Transport_ = -大都市-(人名)
+
+- `Markov Chain` = 马尔科夫链
+
+- `Photon Mapping` = 光子映射
+
+- `Caustics` = 焦-散-
+
+- `Local Density Estimation` = 局部密度估计
+
+- `Biased` = 有偏的
+
+- `Consitent` = 一致的
+
+- `VCM` = _Vertex Connection and Merging_ = 顶点连接与合并
+
+- `IR` = _Instant Radiosity_ = 辐射度算法 
+
+- `Granular Material` = 颗粒材质
+
+- `Translucent Material` = -半透明-材质(玉石)
+
+- `Ply` = 股
+
+- `Yarn` = 纱线
+
+- `Fibers` = 纤维
+
+- `Imaging` = 成像
+
+- `Synthesis` = 合成
+
+- `Capture` = 捕捉
+
+- `Pinhole` = 针孔相机
+
+- `FOV` = _Field Of View_ = 视场
+
+- `Exposure` = 曝光
+
+- `ISO gain` = 增益 后期处理
+
+- `CoC` = _Computing Circle of Confusion_
+
+- `DOF` = _Depth Of Field_
+
+- `Damping` = 阻尼

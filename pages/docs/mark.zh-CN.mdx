@@ -1,0 +1,341 @@
+---
+layout: post
+title: "C#"
+categories: Unity C#
+comments: true
+date: 2021-12-16 09:42:42 +0800
+published: false
+---
+
+
+一、Unity作为3D游戏引擎必须要掌握固定流水线和可编程流水线，因为涉及到矩阵变换的知识点，在项目开发中会用得到的，如果读者不懂的可以查阅资料。
+
+二、Unity作为3D引擎有自己的坐标系，在此强调一点，虽然它的图形API分为DirectX和OpenGL，但是它的世界坐标系是左手坐标系。
+
+三、另外要掌握的坐标系有屏幕坐标系，UI坐标系，视口坐标，包括它们的原点是在哪个位置，因为在项目开发中也会涉及到以上三个坐标系之间的变换。
+
+四、函数的执行顺序，比如Awake，OnEnable，Start 等，以及3D碰撞体的执行效率，比如球体，胶囊体，立方体，Mesh等等。
+
+五、程序的优化处理，这个是面试考察的重点，内存的管理也是Unity程序开发的重中之重。内存管理无非就是对内存的使用，针对UI的内存管理使用的是图集方式，Unity自身的图集功能浪费内存，比如2048*2048的图集大小，它占的内存是4M，也就是说不管图集是否填满，它都需要在内存中开辟4M的空间，但是如果使用Texture Packer工具就可以节省没有填满的空间，针对大量UI的加载可以采用分类打包图集的方法处理。当然内存池的使用也是可以应用到UI的管理，另外就是对3D场景资源的管理，需要场景图片有自己的图库，这样图片可以重复利用，另外模型的面数，骨骼数量，材质数量这些都需要去关注。
+
+六、内存优化还需要涉及到图片的格式，不带Alpha通道的图片采用jpg格式，带有Alpha通道的采用png格式，这是一种处理方式，另外一种处理方式就是将Alpha通道单独拿出来，所有的图片都是jpg格式，然后用带有Alpha通道的图片跟jpg格式文件进行结合使用。这样也可以优化图片的大小。
+
+七、在架构设计方面，就要注意了，代码的编写，比如常用的设计模式，工厂模式，单例模式，MVC模式，FSM模式，观察者模式等，这些模式作为开发者必须要掌握的。
+
+八、接下来就是Shader编写了，在这里给读者推荐一个编辑器工具Shader Forge编辑器，对于一些材质渲染非常好用，这个可以作为读者学习Shader的工具。
+
+九、另外对于C＃中定义的String，StringBuilder或者List，ArrayList等它们之间的区分要搞清楚。
+
+十、不同机型的适配处理，技术验证等。
+
+十一、热更新技术的实现，市面上应用比较广的是ulua作为脚本语言的框架设计。
+
+十二、作为客户端开发者也需要了解一些网络方面的知识，比如tcp，udp，http这些协议处理的方式。
+
+十四、作为渲染场景的后处理方式，比如Bloom，Blur，HDR，SSAO，PSSM等等。
+
+十五、C＃中的事件监听，委托的使用也要熟练掌握。
+
+十六、协程与多线程的区别。
+
+十七、文本文件的加载，比如json，xml，csv，二进制等等。
+
+以上作为Unity开发者必须要掌握的，很多人感觉在公司学不到知识，其实除了完成工作需求外，还需要主动的去学习，这样才会真正的提高自己的技能。希望对读者有所帮助吧。。。。。。。
+
+
+# 总路线
+
+## [Unity](unity/Unity.md)
+### [流水线](unity/流水线.md)
+### [坐标系](unity/坐标系.md)
+### [物理引擎](unity/物理引擎.md)
+### [物理材质](unity/物理材质.md)
+### [射线](unity/射线.md)
+### [UGUI](unity/UGUI.md)
+### [GameObject](unity/GameObject.md)
+### [Transform](unity/Transform.md)
+### [程序优化处理](unity/程序优化处理.md)
+### [虚拟现实和增强现实环境搭建](unity/虚拟现实和增强现实环境搭建.md)
+### [AssetBundle](unity/AssetBundle.md)
+#### [Addressable](unity/Addressable.md)
+### [DOTween](unity/DOTween.md)
+### [EditorGUI](unity/EditorGUI.md)
+### [ESC](unity/ESC.md)
+### [单元测试](csharp/单元测试.zh-CN.mdx)
+### [i18n](csharp/i18n.zh-CN.mdx)
+### [xml](database/xml.zh-CN.mdx)
+### [Json](database/Json.zh-CN.mdx)
+### [动画](unity/动画.md)
+### [贝塞尔](csharp/贝塞尔.zh-CN.mdx)
+### [相机](unity/相机.md)
+### [图片压缩](unity/图片压缩.md)
+### [算法](csharp/算法.zh-CN.mdx)
+## [CSharp](csharp/CSharp.zh-CN.mdx)
+### [延时](csharp/延时.zh-CN.mdx)
+### [协程](csharp/协程.zh-CN.mdx)
+## [持久化数据操作](database/持久化数据操作.zh-CN.mdx)
+## [网络操作](network/网络操作.md)
+### [网络协议原理](network/网络协议原理.md)
+### [Socket](network/Socket.md)
+### [HTTP](network/HTTP.md)
+### [加密](csharp/加密.zh-CN.mdx)
+### [ProtocolBuffer](database/ProtocolBuffer.zh-CN.mdx)
+### [游戏编程模式](游戏编程模式.md)
+## [图形学](graphics/图形学.zh-CN.mdx)
+## [Shader](unity/Shader.md)
+### [顶点着色器](unity/顶点着色器.md)
+### [顶点动画](unity/顶点动画.md)
+### [表面着色器](unity/表面着色器.md)
+### [片段着色器](unity/片段着色器.md)
+### [Pass](graphics/Pass.zh-CN.mdx)
+## [游戏开发框架](framework/游戏开发框架.zh-CN.mdx)
+### [ETFramework](framework/ETFramework.zh-CN.mdx)
+### [GameFramework](framework/GameFramework.zh-CN.mdx)
+### [UGUIFramework](framework/UGUIFramework.zh-CN.mdx)
+### [界面开发框架](unity/界面开发框架.md)
+### [网络框架](network/网络框架.md)
+### [资源管理框架](unity/资源管理框架.md)
+### [资源打包](unity/资源打包.md)
+### [资源相互依赖问题](unity/资源相互依赖问题.md)
+### [热更新框架](unity/热更新框架.md)
+### [对象池框架搭建](unity/对象池框架搭建.md)
+### [通知中心框架](csharp/通知中心框架.zh-CN.mdx)
+### [网络框架](network/网络框架.md)
+### [寻路算法](unity/寻路算法.md)
+### [状态机](csharp/状态机.zh-CN.mdx)
+## [手游平台优化](unity/手游平台优化.md)
+### [帧率优化](unity/帧率优化.md)
+### [内存优化](unity/内存优化.md)
+### [算法优化](csharp/算法优化.zh-CN.mdx)
+## [调试器](unity/调试器.md)
+### [Lua](lua/Lua.zh-CN.mdx)
+### [toLua](unity/hotfix/toLua.md)
+### [xLua](unity/hotfix/xLua.md)
+### [ILRuntime](unity/hotfix/ILRuntime.md)
+### [puerts](unity/hotfix/puerts.md)
+### [持续集成](cdci/持续集成.zh-CN.mdx)
+### [游戏加密和破解](游戏加密和破解.md)
+### [面试题汇总](面试题汇总.md)
+
+cat > /etc/security/limits.conf << EOF
+layout: post
+title: ""
+categories: Unity
+comments: true
+date: 2021-12-15 09:42:42 +0800
+published: false
+EOF
+
+cat > 2021-12-15-Unity.md << EOF
+
+EOF
+cat > 2021-12-15-流水线.md << EOF
+
+EOF
+cat > 2021-12-15-坐标系.md << EOF
+
+EOF
+cat > 2021-12-15-物理引擎.md << EOF
+
+EOF
+cat > 2021-12-15-物理材质.md << EOF
+
+EOF
+cat > 2021-12-15-射线.md << EOF
+
+EOF
+cat > 2021-12-15-UGUI.md << EOF
+
+EOF
+cat > 2021-12-15-GameObject.md << EOF
+
+EOF
+cat > 2021-12-15-Transform.md << EOF
+
+EOF
+cat > 2021-12-15-程序优化处理.md << EOF
+
+EOF
+cat > 2021-12-15-虚拟现实和增强现实环境搭建.md << EOF
+
+EOF
+cat > 2021-12-15-AssetBundle.md << EOF
+
+EOF
+cat > 2021-12-15-Addressable.md << EOF
+
+EOF
+cat > 2021-12-15-DOTween.md << EOF
+
+EOF
+cat > 2021-12-15-EditorGUI.md << EOF
+
+EOF
+cat > 2021-12-15-ESC.md << EOF
+
+EOF
+cat > 2021-12-15-单元测试.md << EOF
+
+EOF
+cat > 2021-12-15-i18n.md << EOF
+
+EOF
+cat > 2021-12-15-xml.md << EOF
+
+EOF
+cat > 2021-12-15-Json.md << EOF
+
+EOF
+cat > 2021-12-15-动画.md << EOF
+
+EOF
+cat > 2021-12-15-贝塞尔.md << EOF
+
+EOF
+cat > 2021-12-15-相机.md << EOF
+
+EOF
+cat > 2021-12-15-图片压缩.md << EOF
+
+EOF
+cat > 2021-12-15-算法.md << EOF
+
+EOF
+cat > 2021-12-15-CSharp.md << EOF
+
+EOF
+cat > 2021-12-15-延时.md << EOF
+
+EOF
+cat > 2021-12-15-协程.md << EOF
+
+EOF
+cat > 2021-12-15-持久化数据操作.md << EOF
+
+EOF
+cat > 2021-12-15-网络操作.md << EOF
+
+EOF
+cat > 2021-12-15-网络协议原理.md << EOF
+
+EOF
+cat > 2021-12-15-Socket.md << EOF
+
+EOF
+cat > 2021-12-15-HTTP.md << EOF
+
+EOF
+cat > 2021-12-15-加密.md << EOF
+
+EOF
+cat > 2021-12-15-ProtocolBuffer.md << EOF
+
+EOF
+cat > 2021-12-15-游戏编程模式.md << EOF
+
+EOF
+cat > 2021-12-15-图形学.md << EOF
+
+EOF
+cat > 2021-12-15-Shader.md << EOF
+
+EOF
+cat > 2021-12-15-顶点着色器.md << EOF
+
+EOF
+cat > 2021-12-15-顶点动画.md << EOF
+
+EOF
+cat > 2021-12-15-表面着色器.md << EOF
+
+EOF
+cat > 2021-12-15-片段着色器.md << EOF
+
+EOF
+cat > 2021-12-15-Pass.md << EOF
+
+EOF
+cat > 2021-12-15-游戏开发框架.md << EOF
+
+EOF
+cat > 2021-12-15-ETFramework.md << EOF
+
+EOF
+cat > 2021-12-15-GameFramework.md << EOF
+
+EOF
+cat > 2021-12-15-UGUIFramework.md << EOF
+
+EOF
+cat > 2021-12-15-界面开发框架.md << EOF
+
+EOF
+cat > 2021-12-15-网络框架.md << EOF
+
+EOF
+cat > 2021-12-15-资源管理框架.md << EOF
+
+EOF
+cat > 2021-12-15-资源打包.md << EOF
+
+EOF
+cat > 2021-12-15-资源相互依赖问题.md << EOF
+
+EOF
+cat > 2021-12-15-热更新框架.md << EOF
+
+EOF
+cat > 2021-12-15-对象池框架搭建.md << EOF
+
+EOF
+cat > 2021-12-15-通知中心框架.md << EOF
+
+EOF
+cat > 2021-12-15-网络框架.md << EOF
+
+EOF
+cat > 2021-12-15-寻路算法.md << EOF
+
+EOF
+cat > 2021-12-15-状态机.md << EOF
+
+EOF
+cat > 2021-12-15-手游平台优化.md << EOF
+
+EOF
+cat > 2021-12-15-帧率优化.md << EOF
+
+EOF
+cat > 2021-12-15-内存优化.md << EOF
+
+EOF
+cat > 2021-12-15-算法优化.md << EOF
+
+EOF
+cat > 2021-12-15-调试器.md << EOF
+
+EOF
+cat > 2021-12-15-Lua.md << EOF
+
+EOF
+cat > 2021-12-15-toLua.md << EOF
+
+EOF
+cat > 2021-12-15-xLua.md << EOF
+
+EOF
+cat > 2021-12-15-ILRuntime.md << EOF
+
+EOF
+cat > 2021-12-15-puerts.md << EOF
+
+EOF
+cat > 2021-12-15-持续集成.md << EOF
+
+EOF
+cat > 2021-12-15-游戏加密和破解.md << EOF
+
+EOF
+cat > 2021-12-15-面试题汇总.md << EOF
+
+EOF
