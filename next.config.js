@@ -1,62 +1,57 @@
-const withNextra = require("nextra")({
-  theme: "nextra-theme-docs",
-  themeConfig: "./theme.config.js",
+const withNextra = require('nextra')({
+  theme: 'nextra-theme-docs',
+  themeConfig: './theme.config.js',
   unstable_stork: false,
-  unstable_staticImage: true,
-});
+  unstable_staticImage: true
+})
 
 module.exports = withNextra({
   i18n: {
-    locales: ["en-US", "zh-CN", "es-ES", "ja", "ko", "ru"],
-    defaultLocale: "en-US",
+    locales: ['zh-CN'],
+    defaultLocale: 'zh-CN'
   },
   redirects: () => {
     return [
+      // {
+      //   source: '/docs',
+      //   destination: '/docs/getting-started',
+      //   statusCode: 301
+      // },
+      // {
+      //   source: '/advanced/performance',
+      //   destination: '/docs/advanced/performance',
+      //   statusCode: 301
+      // },
+      // {
+      //   source: '/advanced/cache',
+      //   destination: '/docs/advanced/cache',
+      //   statusCode: 301
+      // },
+      // {
+      //   source: '/docs/cache',
+      //   destination: '/docs/advanced/cache',
+      //   statusCode: 301
+      // },
+      // {
+      //   source: '/change-log',
+      //   destination: '/docs/change-log',
+      //   statusCode: 301
+      // },
+      // {
+      //   source: '/blog',
+      //   destination: '/blog',
+      //   statusCode: 302
+      // },
+      // {
+      //   source: '/docs',
+      //   destination: '/docs/getting-started',
+      //   statusCode: 302
+      // },
       {
-        source: "/docs",
-        destination: "/docs/getting-started",
-        statusCode: 301,
-      },
-      {
-        source: "/advanced/performance",
-        destination: "/docs/advanced/performance",
-        statusCode: 301,
-      },
-      {
-        source: "/advanced/cache",
-        destination: "/docs/advanced/cache",
-        statusCode: 301,
-      },
-      {
-        source: "/docs/cache",
-        destination: "/docs/advanced/cache",
-        statusCode: 301,
-      },
-      {
-        source: "/change-log",
-        destination: "/docs/change-log",
-        statusCode: 301,
-      },
-      {
-        source: "/blog/swr-1",
-        destination: "/blog/swr-v1",
-        statusCode: 301,
-      },
-      {
-        source: "/blog",
-        destination: "/blog/swr-v1",
-        statusCode: 302,
-      },
-      {
-        source: "/docs",
-        destination: "/docs/getting-started",
-        statusCode: 302,
-      },
-      {
-        source: "/examples",
-        destination: "/examples/basic",
-        statusCode: 302,
-      },
-    ];
-  },
-});
+        source: '/examples',
+        destination: '/examples/basic',
+        statusCode: 302
+      }
+    ]
+  }
+})
